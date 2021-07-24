@@ -4,6 +4,7 @@ import About from '../views/About.vue'
 import Layout from '../views/Detail/Layout.vue'
 import Passenger from '../views/Detail/Passenger.vue'
 import Airline from '../views/Detail/Airline.vue'
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   {
@@ -37,6 +38,17 @@ const routes = [
       
     ]
     
+  },
+  {
+    path: '/404/:resource',
+    name: '404Resource',
+    component: NotFound,
+    props: true
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound
   }
 ]
 
