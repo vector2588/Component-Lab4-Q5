@@ -1,6 +1,4 @@
 <template>
-  <h1>Events For Good</h1>
-
   <div class="events">
     <PassengerCard v-for="pass in events" :key="pass.id" :passenger="pass" />
   </div>
@@ -8,39 +6,39 @@
 
 <script>
 // @ is an alias to /src
-import PassengerCard from '@/components/PassengerCard.vue'
-import  PassengerService from '@/services/PassengerService.js'
+import PassengerCard from "@/components/PassengerCard.vue";
+import PassengerService from "@/services/Service.js";
 export default {
-  name: 'Home',
+  name: "Home",
   props: {
     page: {
       type: Number,
-      required: true
+      required: true,
     },
     size: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   components: {
-    PassengerCard
+    PassengerCard,
   },
   data() {
     return {
       events: null,
-      selectedpage: this.page
-    }
+      selectedpage: this.page,
+    };
   },
   created() {
     PassengerService.getEvents(this.page, this.size)
       .then((response) => {
-        this.events = response.data.data
+        this.events = response.data.data;
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }
-}
+        console.log(error);
+      });
+  },
+};
 </script>
 <style scoped>
 .events {
@@ -57,12 +55,15 @@ export default {
   text-decoration: none;
   color: rgb(20, 85, 55);
 }
+
 #page-prev {
   text-align: left;
 }
+
 #page-next {
   text-align: right;
 }
+
 #selectedpage {
   flex: 1;
   text-align: left;
