@@ -1,7 +1,7 @@
 <template>
     <div v-if="passenger">
         <h1>{{ passenger.name }}</h1>
-        <p>Airline: {{ passenger.airline.name }}</p>
+        <p>ID: {{ passenger._id }}</p>
         <p>Trips: {{ passenger.trips }}</p>
     </div>
 </template>

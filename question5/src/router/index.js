@@ -20,6 +20,7 @@ const routes = [
     name: 'PassengerDetail',
     props: true,
     component: PassengerDetail,
+    
   }
 ]
 
