@@ -23,6 +23,29 @@ export default {
   components: {
     PassengerCard,
   },
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    PassengerService.getEvents(2, parseInt(routeTo.query.page) || 1)
+      .then((response) => {
+        next((comp) => {
+          comp.passenger = response.data.data
+          comp.totalEvents = response.headers['x-totla-count']
+        })
+      })
+      .catch(() => {
+        next({ name: 'NetworkError' })
+      })
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    PassengerService.getEvents(2, parseInt(routeTo.query.page) || 1)
+      .then((response) => {
+        this.passenger = response.data.data // <-----
+        this.totalEvents = response.headers['x-total-count'] // <-----
+        next() // <-----
+      })
+      .catch(() => {
+        next({ name: 'NetworkError' })
+      })
+  },
   data() {
     return {
       events: null,
