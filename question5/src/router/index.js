@@ -7,6 +7,9 @@ import Airline from '../views/Detail/Airline.vue'
 import NotFound from '../views/NotFound.vue'
 import EditPassenger from '../views/Detail/EditPassenger.vue'
 import NProgress from 'nprogress'
+import PassengerService from '../services/Service.js'
+import GStore from '@/store'
+
 
 const routes = [
   {
@@ -25,6 +28,23 @@ const routes = [
     name: 'PassengerDetail',
     props: true,
     component: Layout,
+    beforeEnter: (to) => {
+      return PassengerService.getEvent(to.params.id) // Return and params.id
+      .then((response) => {
+        // Still need to set the data here
+        GStore.passenger = response.data // <--- Store the event
+      })
+      .catch((error) => {
+        if (error.response && error.response.status == 404) {
+          return { // <--- Return
+            name: '404Resource',
+            params: { resource: 'event' }
+          }
+        } else {
+          return { name: 'NetworkError' } // <--- Return
+        }
+      })
+    },
     children: [
       {
         path: '',
