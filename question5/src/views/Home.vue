@@ -1,7 +1,26 @@
 <template>
   <div class="events">
     <PassengerCard v-for="pass in events" :key="pass.id" :passenger="pass" />
+    <div class="pagination">
+      <router-link
+        id="page-prev"
+        :to="{ name: 'Home', query: { page: page - 1 } }"
+        rel="prev"
+        v-if="page != 0"
+      >
+        Prev Page</router-link
+      >
+
+      <router-link
+        id="page-next"
+        :to="{ name: 'Home', query: { page: page + 1 } }"
+        rel="next"
+      >
+        Next Page</router-link
+      >
+    </div>
   </div>
+  
 </template>
 
 <script>
