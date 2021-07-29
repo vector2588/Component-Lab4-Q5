@@ -5,6 +5,7 @@ import Layout from '../views/Detail/Layout.vue'
 import Passenger from '../views/Detail/Passenger.vue'
 import Airline from '../views/Detail/Airline.vue'
 import NotFound from '../views/NotFound.vue'
+import EditPassenger from '../views/Detail/EditPassenger.vue'
 
 const routes = [
   {
@@ -35,9 +36,13 @@ const routes = [
         props: true,
         component: Airline
       },
-      
+      {
+        path: 'editPassenger',
+        name: 'EditPassenger',
+        props: true,
+        component: EditPassenger
+      }
     ]
-    
   },
   {
     path: '/404/:resource',
